@@ -1,0 +1,59 @@
+{% extends "skeleton.html" %}
+
+{% block contents %}
+<div class="card mx-auto" id="dvGames" style="margin: 20px; max-width: 80%;">
+    <div class="card-header text-center">
+        <h3>Juegos Disponibles</h3>
+    </div>
+    <div class="card-body">
+        <form id="searchForm" method="GET" action="/game/list" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Buscar por título..." value="{{ search_query }}">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+                <a href="/game/list" class="btn btn-secondary">Resetear</a>
+            </div>
+        </form>
+        <hr>
+        <a class="btn btn-primary mb-3" href="/game/add" role="button">
+            <img width="24px" src="/static/add.svg" title="Añadir Juego" />
+            &nbsp;
+            Añadir Juego
+        </a>
+        {% if games %}
+            <div class="game-list-container" style="max-height: 400px; overflow-y: auto;">
+                <ul class="list-group list-group-flush">
+                {% for game in games %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1">{{ game.title }}</h5>
+                                <p class="mb-1"><strong>Desarrollador:</strong> {{ game.developer }}</p>
+                                <p class="mb-1"><strong>Descripción:</strong> {{ game.description }}</p>
+                                <p class="mb-1"><strong>Plataforma:</strong> {{ game.platform }}</p>
+                            </div>
+                            <div>
+                                <a class="btn btn-primary mb-2" href="/game/details/{{ game.get_id() }}" role="button">
+                                    Ver Detalles
+                                </a>
+                                {% if game.owner_email == usr.email %}
+                                    <a class="btn btn-secondary mb-2" href="/game/edit/{{ game.get_id() }}" role="button">
+                                        Editar
+                                    </a>
+                                    <form style="display:inline" action="/game/delete/{{ game.get_id() }}" method="POST">
+                                        <button type="submit" class="btn btn-danger">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <b>No hay juegos disponibles...</b>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

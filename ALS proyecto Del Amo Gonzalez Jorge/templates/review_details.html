@@ -1,0 +1,44 @@
+{% extends "skeleton.html" %}
+
+{% block contents %}
+<div class="card mx-auto" id="dvReviewDetails" style="margin: 10px">
+    <div class="card-header">{{ review.title }}</div>
+    <div class="card-body">
+        <p>{{ review.description }}</p>
+        <p>Reseña por: {{ review.reviewer_email }}</p>
+        <p>Calificación: {{ review.rating }} estrellas</p>
+        <p>Comentario: {{ review.comment }}</p>
+        <hr>
+        <h4>Comentarios</h4>
+        {% if comments %}
+            <ul class="list-group list-group-flush list-group-numbered">
+            {% for comment in comments %}
+                <li class="list-group-item">
+                    <b>{{ comment.commenter_email }}</b>: {{ comment.comment }}
+                    {% if comment.commenter_email == usr.email %}
+                        <form style="display:inline" action="/comment/delete/{{ comment.get_oid() }}" method="POST">
+                            <button type="submit" class="btn btn-danger btn-sm float-end">Eliminar</button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <b>No hay comentarios disponibles...</b>
+        {% endif %}
+        <hr>
+        <h4>Añadir Comentario</h4>
+        <form id="frmAddComment" name="frmAddComment" action="/comment/add/{{ review.get_oid() }}" method="POST">
+            <label for="comment">Comentario</label>
+            <textarea id="comment" name="comment" placeholder="comentario..." required></textarea>
+            <br/>
+            <button type="submit" class="btn btn-primary">
+                Añadir Comentario
+            </button>
+        </form>
+        <a href="#" onclick="window.location='/game/details/{{ review.game_id }}'" class="btn btn-secondary">
+            Volver
+        </a>
+    </div>
+</div>
+{% endblock %}

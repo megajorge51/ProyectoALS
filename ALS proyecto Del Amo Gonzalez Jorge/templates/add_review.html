@@ -1,0 +1,29 @@
+{% extends "skeleton.html" %}
+
+{% block contents %}
+<div class="card mx-auto" style="margin: 20px; max-width: 500px;">
+    <div class="card-header text-center">
+        <h3>Añadir Reseña</h3>
+    </div>
+    <div class="card-body">
+        <form id="frmAddReview" name="frmAddReview" action="/review/add/{{ game_id }}" method="POST">
+            <div class="mb-3">
+                <label for="rating" class="form-label">Calificación</label>
+                <input type="number" class="form-control" id="rating" name="rating" placeholder="Calificación..." min="1" max="5" required>
+            </div>
+            <div class="mb-3">
+                <label for="comment" class="form-label">Comentario</label>
+                <textarea id="comment" name="comment" class="form-control" rows="3" placeholder="Comentario..." required></textarea>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary me-md-2">
+                    Añadir Reseña
+                </button>
+                <a href="/game/details/{{ game_id }}" class="btn btn-secondary">
+                    Volver
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

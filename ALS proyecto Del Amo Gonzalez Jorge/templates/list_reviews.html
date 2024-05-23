@@ -1,0 +1,22 @@
+{% extends "skeleton.html" %}
+
+{% block contents %}
+<div class="card" id="dvReviews" style="margin: 10px">
+    <div class="card-header">Reseñas de {{ game.title }}</div>
+    <div class="card-body">
+        {% if reviews %}
+            <ul class="list-group list-group-flush list-group-numbered">
+            {% for review in reviews %}
+                <li class="list-group-item">
+                    <b>{{ review.reviewer_email }}</b>: {{ review.rating }} estrellas
+                    <br/>
+                    {{ review.comment }}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <b>No hay reseñas disponibles...</b>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

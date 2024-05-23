@@ -1,0 +1,43 @@
+{% extends "skeleton.html" %}
+
+{% block contents %}
+<div class="card" id="dvAddGame" style="margin: 10px">
+    <div class="card-header">Añadir Juego</div>
+    <div class="card-body">
+        <form id="frmAddGame" name="frmAddGame" action="/game/add" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Título</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Título..." required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Descripción..." required>
+            </div>
+            <div class="mb-3">
+                <label for="developer" class="form-label">Desarrollador</label>
+                <input type="text" class="form-control" id="developer" name="developer" placeholder="Desarrollador..." required>
+            </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Género</label>
+                <input type="text" class="form-control" id="genre" name="genre" placeholder="Género..." required>
+            </div>
+            <div class="mb-3">
+                <label for="platform" class="form-label">Plataforma</label>
+                <input type="text" class="form-control" id="platform" name="platform" placeholder="Plataforma..." required>
+            </div>
+            <div style="margin: 10px">
+                <button type="submit" class="btn btn-primary">
+                    <img width="24px" src="/static/add.svg" title="Añadir" />
+                    &nbsp;
+                    Añadir Juego
+                </button>
+                <a href="/game/list" class="btn btn-secondary">
+                    <img width="24px" src="/static/back.svg" title="Volver" />
+                    &nbsp;
+                    Volver
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

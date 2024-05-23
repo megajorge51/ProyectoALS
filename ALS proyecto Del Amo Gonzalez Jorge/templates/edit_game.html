@@ -1,0 +1,43 @@
+{% extends "skeleton.html" %}
+
+{% block contents %}
+<div class="card mx-auto" id="dvEditGame" style="margin: 20px; max-width: 80%;">
+    <div class="card-header text-center">
+        <h3>Editar Juego</h3>
+    </div>
+    <div class="card-body">
+        <form id="frmEditGame" name="frmEditGame" action="/game/edit/{{ game.get_id() }}" method="POST">
+            <div class="mb-3">
+                <label for="title" class="form-label">Título</label>
+                <input type="text" id="title" name="title" class="form-control" value="{{ game.title }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descripción</label>
+                <textarea id="description" name="description" class="form-control" rows="4" required>{{ game.description }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="developer" class="form-label">Desarrollador</label>
+                <input type="text" id="developer" name="developer" class="form-control" value="{{ game.developer }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Género</label>
+                <input type="text" id="genre" name="genre" class="form-control" value="{{ game.genre }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="platform" class="form-label">Plataforma</label>
+                <input type="text" id="platform" name="platform" class="form-control" value="{{ game.platform }}" required>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-block">
+                    <img width="24px" src="/static/save.png" alt="Guardar" />
+                    &nbsp;
+                    Guardar Cambios
+                </button>
+                <a href="/game/list" class="btn btn-secondary btn-block">
+                    Volver
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

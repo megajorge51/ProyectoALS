@@ -1,0 +1,121 @@
+body {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+    font-family: 'Press Start 2P', cursive; /* Fuente de estilo videojuego */
+    margin: 0; /* Eliminar márgenes predeterminados */
+    padding-top: 60px; /* Espacio para la barra superior */
+    padding-bottom: 40px; /* Espacio para el pie de página */
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #282a2e;
+    z-index: 1000;
+    border-bottom: 1px solid #373b41;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.navbar .title {
+    color: #c5c8c6;
+    font-size: 1.5rem;
+}
+
+.navbar .buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar a.btn {
+    margin: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #282a2e;
+    z-index: 1000;
+    border-top: 1px solid #373b41;
+    color: #c5c8c6;
+    text-align: end;
+    padding-right: 10px;
+    font-size: 75%;
+}
+
+.card {
+    margin: 20px;
+    background-color: #282a2e;
+    border: 1px solid #373b41;
+    color: #c5c8c6;
+}
+
+.card-header {
+    background-color: #373b41;
+    border-bottom: 1px solid #282a2e;
+    color: #c5c8c6;
+}
+
+.btn-primary {
+    background-color: #cc6666;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #a54242;
+}
+
+.btn-secondary {
+    background-color: #b5bd68;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #8c9440;
+}
+
+.form-control {
+    background-color: #373b41;
+    border: 1px solid #282a2e;
+    color: #c5c8c6;
+}
+
+.form-control:focus {
+    background-color: #373b41;
+    color: #c5c8c6;
+    border-color: #cc6666;
+}
+
+.table-dark th, .table-dark td, .table-dark thead th {
+    color: #c5c8c6;
+}
+
+.game-list-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    background-color: #282a2e;
+    border: 1px solid #373b41;
+    color: #c5c8c6;
+}
+
+.list-group-item h5 {
+    color: #cc6666;
+}
+
+.list-group-item p {
+    color: #b5bd68;
+}
+
+.list-group-item .btn {
+    margin-left: 5px;
+}

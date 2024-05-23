@@ -1,0 +1,66 @@
+{% extends "skeleton.html" %}
+
+{% block contents %}
+<div class="card mx-auto" id="dvGameDetails" style="margin: 20px;">
+    <div class="card-header text-center">
+        <h3>{{ game.title }}</h3>
+    </div>
+    <div class="card-body">
+        <p>{{ game.description }}</p>
+        <p><strong>Desarrollador:</strong> {{ game.developer }}</p>
+        <p><strong>Género:</strong> {{ game.genre }}</p>
+        <p><strong>Plataforma:</strong> {{ game.platform }}</p>
+        <p><strong>Publicado por:</strong> {{ game.owner_email }}</p>
+        <hr>
+        <h4>Reseñas</h4>
+        {% if reviews %}
+            <ul class="list-group list-group-flush list-group-numbered">
+            {% for review in reviews %}
+                <li class="list-group-item">
+                    <b>{{ review.reviewer_email }}</b>: {{ review.rating }} estrellas
+                    <br/>
+                    {{ review.comment }}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a class="btn btn-primary me-md-2" href="/review/details/{{ review.get_oid() }}" role="button">
+                            Ver Detalles
+                        </a>
+                        {% if review.reviewer_email == usr.email %}
+                            <a class="btn btn-secondary me-md-2" href="/review/edit/{{ review.get_oid() }}" role="button">
+                                Editar
+                            </a>
+                            <form style="display:inline" action="/review/delete/{{ review.get_oid() }}" method="POST">
+                                <button type="submit" class="btn btn-danger">
+                                    Eliminar
+                                </button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <b>No hay reseñas disponibles...</b>
+        {% endif %}
+        <hr>
+        <h4>Añadir Reseña</h4>
+        <form id="frmNewReview" name="frmNewReview" action="/review/add/{{ game.get_id() }}" method="POST">
+            <div class="mb-3">
+                <label for="rating" class="form-label">Calificación</label>
+                <input type="number" class="form-control" id="rating" name="rating" placeholder="Calificación..." min="1" max="5" required>
+            </div>
+            <div class="mb-3">
+                <label for="comment" class="form-label">Comentario</label>
+                <textarea id="comment" name="comment" class="form-control" rows="3" placeholder="Comentario..." required></textarea>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary me-md-2">
+                    Añadir Reseña
+                </button>
+                <a href="/game/list" class="btn btn-secondary">
+                    Volver
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
